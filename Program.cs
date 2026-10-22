@@ -1,9 +1,17 @@
 ﻿using ChargeHub.Vehicles;
 
-Vehicle car = new Vehicle("EV-01", 75, 20);
+var car = new Vehicle("1", 75, 0);
+var ac = new ChargingStation("AC-01", 11);
+var dc = new ChargingStation("DC-01", 150);
 
-car.Charge(30);
-Console.WriteLine($"After 30 kWh: {car.Percent}%");
+var reports = new List<IReportable>
+{
+    car,
+    ac,
+    dc
+};
 
-car.Charge(50);
-Console.WriteLine($"After another 50 kWh: {car.Percent}%");
+foreach (var item in reports)
+{
+    Console.WriteLine(item.GetReport());
+}
