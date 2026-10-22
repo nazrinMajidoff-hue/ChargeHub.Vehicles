@@ -1,9 +1,22 @@
-# ChargeHub.Vehicles
+classDiagram
+    class IReportable {
+        <<interface>>
+        GetReport()
+    }
 
-A simple C# console application that simulates charging an electric vehicle.
+    class Vehicle {
+        Id
+        BatteryKwh
+        Percent
+        GetReport()
+        Charge()
+    }
 
-## Features
-- Tracks battery capacity and charge percentage.
-- Adds energy to the battery.
-- Prevents the battery from exceeding 100%.
-- Rejects charging amounts that are zero or negative.
+    class ChargingStation {
+        Id
+        MaxKw
+        GetReport()
+    }
+
+    IReportable <|.. Vehicle
+    IReportable <|.. ChargingStation
