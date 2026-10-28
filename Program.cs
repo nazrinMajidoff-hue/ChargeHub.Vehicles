@@ -1,17 +1,18 @@
-﻿using ChargeHub.Vehicles;
+﻿string[] inputs = { "20", "12", "abc", "40" };
+decimal total = 0m;
 
-var car = new Vehicle("1", 75, 0);
-var ac = new ChargingStation("AC-01", 11);
-var dc = new ChargingStation("DC-01", 150);
-
-var reports = new List<IReportable>
+foreach (var text in inputs)
 {
-    car,
-    ac,
-    dc
-};
-
-foreach (var item in reports)
-{
-    Console.WriteLine(item.GetReport());
+    try
+    {
+        total += Reports.ParseKwh(text);
+    }
+    catch (ArgumentException ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
+    finally
+    {
+        Console.WriteLine($"Hittills: {total} kWh");
+    }
 }
